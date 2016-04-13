@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 )
 
-type registerDeviceTokenRequest struct {
+type RegisterDeviceTokenRequest struct {
 	Email  string
 	Device map[string]interface{}
 }
 
-func (client *Client) RegisterDeviceToken(registerDeviceTokenRequest *registerDeviceTokenRequest) error {
+func (client *Client) RegisterDeviceToken(registerDeviceTokenRequest *RegisterDeviceTokenRequest) error {
 
 	registerDeviceTokenRequestBytes, err := json.Marshal(registerDeviceTokenRequest)
 	if err != nil {
