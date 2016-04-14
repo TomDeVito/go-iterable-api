@@ -8,9 +8,7 @@ import (
 )
 
 const (
-	rootURI = "https://api.iterable.com:443/api/"
-
-	REGISTER_DEVICE_TOKEN_URL = "users/registerDeviceToken"
+	ROOT_URI = "https://api.iterable.com:443/api/"
 )
 
 type AuthOptions struct {
@@ -22,7 +20,7 @@ type Client struct {
 	Client  *http.Client
 }
 
-func New(options *AuthOptions, httpClient *http.Client) *Client {
+func NewClient(options *AuthOptions, httpClient *http.Client) *Client {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
 	}
@@ -35,7 +33,8 @@ func New(options *AuthOptions, httpClient *http.Client) *Client {
 
 func (client *Client) iterableCall(requestType string, url string, requestBody []byte) ([]byte, error) {
 
-	req, err := http.NewRequest(requestType, fmt.Sprintf("%s%s?api_key=%s", rootURI, url, client.Options.API_KEY), bytes.NewBuffer(requestBody))
+	fullUrl := fmt.Sprintf("%s%s?api_key=%s", ROOT_URI, url, client.Options.API_KEY)
+	req, err := http.NewRequest(requestType, fullUrl, bytes.NewBuffer(requestBody))
 	if err != nil {
 		return nil, err
 	}
