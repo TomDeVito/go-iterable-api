@@ -20,6 +20,10 @@ type Client struct {
 	Client  *http.Client
 }
 
+type IterableAPI interface {
+	RegisterDeviceToken(registerDeviceTokenRequest *RegisterDeviceTokenRequest) error
+}
+
 func NewClient(options *AuthOptions, httpClient *http.Client) *Client {
 	if httpClient == nil {
 		httpClient = http.DefaultClient
