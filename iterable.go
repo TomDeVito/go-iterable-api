@@ -22,6 +22,7 @@ type Client struct {
 
 type IterableAPI interface {
 	RegisterDeviceToken(registerDeviceTokenRequest *RegisterDeviceTokenRequest) error
+	DeleteUser(deleteUserRequest *DeleteUserRequest) error
 }
 
 func NewClient(options *AuthOptions, httpClient *http.Client) *Client {
